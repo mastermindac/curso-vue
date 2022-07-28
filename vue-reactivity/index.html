@@ -1,0 +1,50 @@
+<script src="https://unpkg.com/vue@3"></script>
+
+<div id="app">
+
+</div>
+
+<script>
+  const { createApp } = Vue
+
+  const Counter = {
+    template: `
+      <div>
+        Count is: {{ count }}
+        <button v-on:click="increment">Increment</button>
+        <button v-on:click="decrement">Decrement</button>
+      </div>
+    `,
+
+    data() {
+      return {
+        count: 5
+      }
+    },
+
+    methods: {
+      increment() {
+        this.count++;
+      },
+      decrement() {
+        this.count--;
+      }
+    }
+  }
+
+  const App = {
+    template: `
+      <header>Navbar</header>
+      <main>
+        <Counter />
+      </main>
+      <footer>Footer</footer>
+    `
+  }
+
+  const app = createApp(App)
+
+  app.component('Counter', Counter);
+
+  app.mount("#app");
+</script>
