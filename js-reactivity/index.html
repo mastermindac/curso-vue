@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="countDiv">
+    Count is: count
+    <button id="incrementBtn">Increment</button>
+    <button id="decrementBtn">Decrement</button>
+  </div>
+
+  <script>
+    let count = 5;
+
+    const countDiv = document.getElementById("countDiv");
+
+    const incrementBtn = document.getElementById("incrementBtn")
+    const decrementBtn = document.getElementById("decrementBtn")
+
+    incrementBtn.onclick = () => {
+      count++;
+      countDiv.childNodes[0].textContent = `Count is: ${count}`
+    }
+
+    decrementBtn.onclick = () => {
+      count--;
+      countDiv.childNodes[0].textContent = `Count is: ${count}`
+    }
+  </script>
+</body>
+</html>
