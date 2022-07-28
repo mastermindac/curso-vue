@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>Get Players</button>
+  <div id="players">
+
+  </div>
+
+  <script>
+    const button = document.querySelector("body > button")
+    const playersDiv = document.getElementById("players");
+
+    const state = {
+      players: ["Manolo", "Antonio"],
+    }
+
+    button.onclick = () => {
+      while (playersDiv.firstChild) {
+        playersDiv.removeChild(playersDiv.firstChild);
+      }
+
+      state.players.forEach(p => {
+        const div = document.createElement('div');
+        const text = document.createTextNode(p);
+
+        div.appendChild(text);
+        playersDiv.appendChild(div);
+      })
+    }
+
+  </script>
+</body>
+</html>
