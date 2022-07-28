@@ -1,35 +1,22 @@
-@import "./base.css";
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap');
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@import "./normilze.css";
 
-  font-weight: normal;
+:root {
+  --background-color: #23272E;
+  --text-color: #FFF;
+  --navbar-color: #15181C;
+  --accent-color: #41B883;
+  --danger-color: #E06C75;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+html {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Fira Sans', sans-serif;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.container {
+  width: 80%;
+  margin: auto;
 }
