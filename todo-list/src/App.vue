@@ -15,8 +15,8 @@
     </section>
 
     <section>
-      <div v-for="todo in todos" class="todo">
-        <p>{{ todo }}</p>
+      <div v-for="todo in todos" class="todo" :key="todo.id">
+        <p>{{ todo.title }}</p>
         <div>
           <button @click="removeTodo(todo)" class="remove-todo-btn">&times;</button>
         </div>
@@ -36,7 +36,10 @@ export default {
 
   methods: {
     addTodo() {
-      this.todos.push(this.todoTitle);
+      this.todos.push({
+        title: this.todoTitle,
+        id: Math.floor(Math.random() * 1000)
+      });
     },
 
     removeTodo(todoTitle) {
