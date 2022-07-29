@@ -5,6 +5,12 @@
   </nav>
 
   <main class="container">
+    <Alert
+      message="Todo title is required"
+      :show="showAlert"
+      @close="showAlert = false"
+    />
+
     <section>
       <form class="add-todo-form">
         <input v-model="todoTitle" type="text" placeholder="Todo Title" />
@@ -18,7 +24,9 @@
       <div v-for="todo in todos" class="todo" :key="todo.id">
         <p>{{ todo.title }}</p>
         <div>
-          <button @click="removeTodo(todo)" class="remove-todo-btn">&times;</button>
+          <button @click="removeTodo(todo)" class="remove-todo-btn">
+            &times;
+          </button>
         </div>
       </div>
     </section>
@@ -26,26 +34,36 @@
 </template>
 
 <script>
+import Alert from "./components/Alert.vue";
+
 export default {
+  components: {
+    Alert,
+  },
+
   data() {
     return {
       todoTitle: "",
       todos: [],
-    }
+      showAlert: false,
+    };
   },
-
   methods: {
     addTodo() {
+      if (this.todoTitle === "") {
+        this.showAlert = true;
+        return;
+      }
       this.todos.push({
         title: this.todoTitle,
-        id: Math.floor(Math.random() * 1000)
+        id: Math.floor(Math.random() * 1000),
       });
     },
-
     removeTodo(todoTitle) {
-      this.todos = this.todos.filter(todo => todo !== todoTitle)
-    }
-  }
+      this.todos = this.todos.filter((todo) => todo !== todoTitle);
+    },
+  },
+  components: { Alert },
 };
 </script>
 
@@ -97,5 +115,6 @@ export default {
   font-size: 30px;
   color: var(--text-color);
   background: var(--danger-color);
+  cursor: pointer;
 }
 </style>

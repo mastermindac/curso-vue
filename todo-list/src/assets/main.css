@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap');
 
-@import "./normilze.css";
+@import "./normalize.css";
 
 :root {
   --background-color: #23272E;
@@ -8,6 +8,8 @@
   --navbar-color: #15181C;
   --accent-color: #41B883;
   --danger-color: #E06C75;
+  --warning-color: #E5C07B;
+  --info-color: #61AFEF;
 }
 
 html {
