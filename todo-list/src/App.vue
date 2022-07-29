@@ -7,18 +7,18 @@
   <main class="container">
     <section>
       <form class="add-todo-form">
-        <input type="text" placeholder="Todo Title" />
+        <input v-model="todoTitle" type="text" placeholder="Todo Title" />
         <div>
-          <button>Add Todo</button>
+          <button @click.prevent="addTodo">Add Todo</button>
         </div>
       </form>
     </section>
 
     <section>
-      <div class="todo">
-        <p>Pasear al perro</p>
+      <div v-for="todo in todos" class="todo">
+        <p>{{ todo }}</p>
         <div>
-          <button class="remove-todo-btn">&times;</button>
+          <button @click="removeTodo(todo)" class="remove-todo-btn">&times;</button>
         </div>
       </div>
     </section>
@@ -26,7 +26,24 @@
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      todoTitle: "",
+      todos: [],
+    }
+  },
 
+  methods: {
+    addTodo() {
+      this.todos.push(this.todoTitle);
+    },
+
+    removeTodo(todoTitle) {
+      this.todos = this.todos.filter(todo => todo !== todoTitle)
+    }
+  }
+};
 </script>
 
 <style scoped>
