@@ -12,7 +12,7 @@ export default {
       required: true,
       type: String,
     },
-    showAlert: {
+    show: {
       required: true,
       type: Boolean,
     },
