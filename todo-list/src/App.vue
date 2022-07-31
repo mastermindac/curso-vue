@@ -17,7 +17,7 @@
       <template #footer>
         <div class="edit-todo-modal-footer">
           <Btn class="edit-todo-submit-btn" @click="updateTodo">Submit</Btn>
-          <Btn type="danger" @click="editTodoForm.show = false">Close</Btn>
+          <Btn variant="danger" @click="editTodoForm.show = false">Close</Btn>
         </div>
       </template>
     </Modal>

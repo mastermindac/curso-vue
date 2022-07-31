@@ -27,7 +27,6 @@ export default {
   data() {
     return {
       clickListener: (e) => {
-        console.log(e.target);
         if (e.target === this.$refs.modal) {
           this.$emit("close");
         }
