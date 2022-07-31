@@ -23,9 +23,10 @@
     </Modal>
 
     <Alert
-      message="Todo title is required"
-      :show="showAlert"
-      @close="showAlert = false"
+      :message="alert.message"
+      :show="alert.show"
+      :type="alert.type"
+      @close="alert.show = false"
     />
 
     <section>
@@ -51,6 +52,7 @@ import AddTodoForm from "./components/AddTodoForm.vue";
 import Todo from "./components/Todo.vue";
 import Modal from "./components/Modal.vue";
 import Btn from "./components/Btn.vue";
+import axios from "axios";
 
 export default {
   components: {
@@ -66,7 +68,11 @@ export default {
     return {
       todoTitle: "",
       todos: [],
-      showAlert: false,
+      alert: {
+        show: false,
+        message: "",
+        type: "danger"
+      },
       editTodoForm: {
         show: false,
         todo: {
@@ -77,16 +83,37 @@ export default {
     };
   },
 
+  created() {
+    this.fetchTodos();
+  },
+
   methods: {
-    addTodo(title) {
+    async fetchTodos() {
+      try {
+        const res = await axios.get('http://localhost:8080/todos');
+       this.todos = await res.data;
+      } catch (e) {
+        this.showAlert("Failed loading todos, check your internet connection");
+      }
+    },
+
+    showAlert(message, type = "danger") {
+      this.alert.show = true;
+      this.alert.message = message;
+      this.alert.type = type;
+    },
+
+    async addTodo(title) {
       if (title === "") {
-        this.showAlert = true;
+        this.showAlert("Todo title is required");
         return;
       }
-      this.todos.push({
-        title,
-        id: Math.floor(Math.random() * 1000),
+
+      const res = await axios.post('http://localhost:8080/todos', {
+        title
       });
+
+      this.todos.push(res.data);
     },
 
     showEditTodoForm(todo) {
@@ -102,9 +129,10 @@ export default {
       this.editTodoForm.show = false;
     },
 
-    removeTodo(id) {
+    async removeTodo(id) {
+      await axios.delete(`http://localhost:8080/todos/${id}`);
       this.todos = this.todos.filter((todo) => todo.id !== id);
-    },
+    }
   },
 };
 </script>

@@ -28,10 +28,6 @@ export default {
     },
   },
 
-  created() {
-    console.log(this.$attrs);
-  },
-
   computed: {
     backgroundColor() {
       const options = {
