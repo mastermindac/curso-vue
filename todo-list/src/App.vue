@@ -132,12 +132,21 @@ export default {
       this.editTodoForm.todo = { ...todo };
     },
 
-    updateTodo() {
-      const todo = this.todos.find(
-        (todo) => todo.id === this.editTodoForm.todo.id
-      );
-      todo.title = this.editTodoForm.todo.title;
-      this.editTodoForm.show = false;
+    async updateTodo() {
+      try {
+        const { id, title } = this.editTodoForm.todo;
+        await axios.put(`/api/todos/${id}`, { title });
+
+        const todo = this.todos.find(
+          (todo) => todo.id === this.editTodoForm.todo.id
+        );
+
+        todo.title = this.editTodoForm.todo.title;
+      } catch (e) {
+        this.showAlert("Failed updating todo");
+      }
+
+        this.editTodoForm.show = false;
     },
 
     async removeTodo(id) {
