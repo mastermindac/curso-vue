@@ -1,14 +1,5 @@
 <template>
-  <Alert
-    :message="alert.message"
-    :show="alert.show"
-    :variant="alert.variant"
-    @close="alert.show = false"
-  />
-
-  <section>
-    <AddTodoForm :isLoading="isPostingTodo" @submit="addTodo" />
-  </section>
+  <Alert v-bind="alert" @close="alert.show = false" />
 
   <section>
     <Spinner class="spinner" v-if="isLoading" />
@@ -16,7 +7,7 @@
       <Todo
         v-for="todo in todos"
         :key="todo.id"
-        :title="todo.title"
+        :todo="todo"
         @remove="removeTodo(todo.id)"
         @edit="$router.push(`/todos/${todo.id}/edit`)"
       />
@@ -26,36 +17,19 @@
 
 <script setup>
 import Alert from "@/components/Alert.vue";
-import AddTodoForm from "@/components/AddTodoForm.vue";
 import Todo from "@/components/Todo.vue";
 import axios from "axios";
 import Spinner from "@/components/Spinner.vue";
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 import { useFetch } from "@/composables/fetch";
+import { useAlert } from "../composables/alert.js";
 
-const alert = reactive({
-  show: false,
-  message: "",
-  variant: "danger",
-});
+const { alert, showAlert } = useAlert();
 const isPostingTodo = ref(false);
-const editTodoForm = reactive({
-  show: false,
-  todo: {
-    id: 0,
-    title: "",
-  },
-});
 
 const { data: todos, isLoading } = useFetch("/api/todos", {
   onError: () => showAlert("Failed loading todos"),
 });
-
-function showAlert(message, variant = "danger") {
-  alert.show = true;
-  alert.message = message;
-  alert.variant = variant;
-}
 
 async function addTodo(title) {
   if (title === "") {

@@ -6,7 +6,10 @@
 </template>
 
 <script setup>
-import { backgroundColorProps, useBackgroundColor } from "../composables/backgroundColor.js";
+import {
+  backgroundColorProps,
+  useBackgroundColor,
+} from "../composables/backgroundColor.js";
 
 const props = defineProps({
   ...backgroundColorProps,

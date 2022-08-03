@@ -11,7 +11,10 @@
 
 <script setup>
 import { computed } from "vue";
-import { useBackgroundColor, backgroundColorProps } from "../composables/backgroundColor.js";
+import {
+  useBackgroundColor,
+  backgroundColorProps,
+} from "../composables/backgroundColor.js";
 
 const props = defineProps({
   circle: {

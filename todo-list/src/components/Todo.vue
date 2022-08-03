@@ -1,6 +1,8 @@
 <template>
   <div class="todo">
-    <p>{{ title }}</p>
+    <p>{{ todo.title }}</p>
+    <p>{{ todo.description }}</p>
+    <p>{{ todo.date }}</p>
     <div>
       <Btn
         circle
@@ -22,9 +24,9 @@ import Btn from "./Btn.vue";
 import Pencil from "./icons/Pencil.vue";
 
 defineProps({
-  title: {
+  todo: {
     required: true,
-    type: String,
+    type: Object,
   },
 });
 
@@ -54,5 +56,13 @@ defineEmits(["remove", "edit"]);
   height: 40px;
   width: 40px;
   font-size: 30px;
+}
+
+@media (max-width: 680px) {
+  .todo {
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+  }
 }
 </style>

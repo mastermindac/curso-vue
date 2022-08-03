@@ -1,12 +1,10 @@
 {
   "todos": [
     {
-      "title": "Pasear al perro",
+      "title": "Hacer la Compra",
+      "description": "Patatas, Pollo, Arroz, Leche",
+      "date": "2022-08-31",
       "id": 1
-    },
-    {
-      "title": "Test EDIT",
-      "id": 2
     }
   ]
 }
