@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: space-between;
   background: var(--navbar-color);
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 30px;
 }
 
@@ -38,6 +38,7 @@
   align-items: center;
   padding: 20px;
   list-style: none;
+  margin: 0;
 }
 
 .links a {
@@ -54,6 +55,10 @@ a.router-link-active {
 @media (max-width: 680px) {
   .navbar {
     display: block;
+  }
+
+  .links {
+    margin-top: 10px;
   }
 
   .links ul {
